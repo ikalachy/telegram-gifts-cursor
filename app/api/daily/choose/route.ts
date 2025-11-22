@@ -5,6 +5,8 @@ import { PendingCreation } from '@/models/PendingCreation';
 import { Gift } from '@/models/Gift';
 import { getUserFromInitData } from '@/lib/telegram';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     await connectDB();

@@ -3,6 +3,8 @@ import connectDB from '@/lib/db';
 import { User } from '@/models/User';
 import { getUserFromInitData } from '@/lib/telegram';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     await connectDB();

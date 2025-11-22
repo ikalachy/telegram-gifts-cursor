@@ -16,8 +16,7 @@ Create a `.env` file in the root directory:
 MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/dbname
 BOT_TOKEN=123456789:ABCdefGHIjklMNOpqrsTUVwxyz
 WEBAPP_URL=http://localhost:3000
-VEO_API_KEY=your_veo_api_key
-NANA_KEY=your_nanabanana_key
+GOOGLE_API_KEY=your_google_api_key
 BLOB_WRITE_TOKEN=vercel_blob_write_token
 BLOB_READ_TOKEN=vercel_blob_read_token
 TELEGRAM_BOT_SECRET=your_bot_secret
@@ -67,7 +66,7 @@ For local development, you'll need to expose your local server to Telegram:
 ## 🎯 Next Steps
 
 - Set up MongoDB Atlas (see README.md)
-- Configure Veo 3.1 API
+- Configure Gemini API (get key from https://aistudio.google.com/app/apikey)
 - Deploy to Vercel (see DEPLOYMENT.md)
 - Set up webhook after deployment
 
@@ -90,7 +89,7 @@ Run `npm install` again
 
 ### API errors
 - Check all environment variables are set
-- Verify Veo API key is valid
+- Verify GOOGLE_API_KEY is valid
 - Review console logs
 
 ## 📚 Full Documentation

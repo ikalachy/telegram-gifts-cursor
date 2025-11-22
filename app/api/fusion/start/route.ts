@@ -5,6 +5,8 @@ import { Gift } from '@/models/Gift';
 import { FusionJob } from '@/models/FusionJob';
 import { getUserFromInitData } from '@/lib/telegram';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     await connectDB();

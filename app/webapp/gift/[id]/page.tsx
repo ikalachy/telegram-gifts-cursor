@@ -110,12 +110,9 @@ export default function GiftViewerPage() {
         width: '100%',
         boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
       }}>
-        <video
+        <img
           src={gift.animation_url}
-          autoPlay
-          loop
-          muted
-          playsInline
+          alt={gift.animals.join(' + ')}
           style={{
             width: '100%',
             height: '400px',
@@ -125,15 +122,8 @@ export default function GiftViewerPage() {
             backgroundColor: '#f5f5f5'
           }}
           onError={(e) => {
-            const video = e.target as HTMLVideoElement;
-            video.style.display = 'none';
-            const img = document.createElement('img');
-            img.src = gift.thumbnail_url;
-            img.style.width = '100%';
-            img.style.height = '400px';
-            img.style.objectFit = 'contain';
-            img.style.borderRadius = '15px';
-            video.parentElement?.appendChild(img);
+            const img = e.target as HTMLImageElement;
+            img.src = gift.thumbnail_url || 'https://via.placeholder.com/400?text=Gift+Image';
           }}
         />
 

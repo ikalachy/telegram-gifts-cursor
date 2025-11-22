@@ -6,6 +6,8 @@ import { getUserFromInitData } from '@/lib/telegram';
 import { generateAnimation } from '@/lib/veo';
 import { generateDailyPrompt, getRandomAnimal, getRandomAccessory } from '@/lib/nana';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     await connectDB();

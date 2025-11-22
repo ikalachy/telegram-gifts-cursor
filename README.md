@@ -1,10 +1,10 @@
 # 🎁 Plush Gifts Telegram Mini App
 
-An AI-powered Telegram Mini App for generating and collecting animated plush gifts using Veo 3.1 and NanaBanana.
+An AI-powered Telegram Mini App for generating and collecting plush gift images using Google Gemini Nano Banana (image generation).
 
 ## 🚀 Features
 
-- **Daily Box**: Open a daily box to generate 2 animated plush gifts and choose one to keep
+- **Daily Box**: Open a daily box to generate 2 plush gift images and choose one to keep
 - **Fusion System**: Combine 2-3 gifts to create rare or legendary plush items
 - **Collection Management**: View and manage your plush gift collection
 - **Style Customization**: Choose from multiple plush styles (Kawaii, Realistic, Anime, Chibi, Vintage)
@@ -16,9 +16,8 @@ An AI-powered Telegram Mini App for generating and collecting animated plush gif
 - **Backend**: Next.js API Routes
 - **Database**: MongoDB Atlas with Mongoose
 - **Bot Framework**: Telegraf
-- **AI Generation**: Veo 3.1 (animated plush generator)
-- **Prompt Generation**: NanaBanana
-- **Storage**: Vercel Blob (for animation files)
+- **AI Generation**: Google Gemini Nano Banana (image generation via Gemini API)
+- **Storage**: Vercel Blob (for generated images)
 
 ## 📦 Installation
 
@@ -39,8 +38,7 @@ An AI-powered Telegram Mini App for generating and collecting animated plush gif
    MONGODB_URI=your_mongodb_atlas_connection_string
    BOT_TOKEN=your_telegram_bot_token
    WEBAPP_URL=https://your-app.vercel.app
-   VEO_API_KEY=your_veo_api_key
-   NANA_KEY=your_nanabanana_api_key
+   GOOGLE_API_KEY=your_google_api_key
    BLOB_WRITE_TOKEN=your_vercel_blob_write_token
    BLOB_READ_TOKEN=your_vercel_blob_read_token
    TELEGRAM_BOT_SECRET=your_telegram_bot_secret
@@ -161,23 +159,20 @@ The bot will now receive updates via webhook at `/api/telegram/webhook`.
 
 ## 🔧 Configuration
 
-### Veo 3.1 API
-Update the Veo API URL in `/lib/veo.ts` if needed:
-```typescript
-const VEO_API_URL = 'https://api.veo.ai/v1';
-```
+### Gemini API
+The app uses Google Gemini Nano Banana (gemini-2.5-flash-image) for image generation.
+Get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
 
-### NanaBanana API
-Update the NanaBanana API URL in `/lib/nana.ts` if needed:
+The API endpoint is configured in `/lib/veo.ts`:
 ```typescript
-const NANA_API_URL = 'https://api.nanabanana.ai/v1';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent';
 ```
 
 ## 🧪 Testing
 
 1. **Test Telegram authentication**: Verify initData validation
 2. **Test daily limit**: Ensure 24-hour cooldown works
-3. **Test Veo generation**: Verify animation generation
+3. **Test Gemini image generation**: Verify image generation works
 4. **Test fusion logic**: Ensure parent gifts are consumed
 5. **Test WebApp UI**: Verify all flows work in Telegram
 
@@ -185,7 +180,7 @@ const NANA_API_URL = 'https://api.nanabanana.ai/v1';
 
 - Daily box has a 24-hour cooldown per user
 - Fusion consumes the original gifts
-- Animations are stored in Vercel Blob
+- Generated images are stored in Vercel Blob
 - All API routes require valid Telegram initData
 - The bot requires a valid BOT_TOKEN from @BotFather
 
@@ -201,10 +196,11 @@ const NANA_API_URL = 'https://api.nanabanana.ai/v1';
 - Check all environment variables are set
 - Review API route logs
 
-### Veo generation fails
-- Verify VEO_API_KEY is correct
-- Check Veo API status
-- Review error logs in `/api/daily/generate`
+### Gemini image generation fails
+- Verify GOOGLE_API_KEY is correct
+- Check [Gemini API status](https://status.cloud.google.com/)
+- Review error logs in `/api/daily/generate` or `/api/fusion/complete`
+- Ensure you have API access enabled in Google AI Studio
 
 ## 📄 License
 

@@ -11,6 +11,8 @@ import {
   getRandomLegendaryTrait,
 } from '@/lib/nana';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     await connectDB();

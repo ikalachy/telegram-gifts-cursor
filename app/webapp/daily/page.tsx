@@ -199,12 +199,9 @@ export default function DailyPage() {
                   boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
                 }}
               >
-                <video
+                <img
                   src={option.animation_url}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+                  alt={option.animals.join(', ')}
                   style={{
                     width: '100%',
                     height: '200px',
@@ -214,15 +211,8 @@ export default function DailyPage() {
                     backgroundColor: '#f5f5f5'
                   }}
                   onError={(e) => {
-                    const video = e.target as HTMLVideoElement;
-                    video.style.display = 'none';
-                    const img = document.createElement('img');
-                    img.src = option.thumbnail_url;
-                    img.style.width = '100%';
-                    img.style.height = '200px';
-                    img.style.objectFit = 'cover';
-                    img.style.borderRadius = '10px';
-                    video.parentElement?.appendChild(img);
+                    const img = e.target as HTMLImageElement;
+                    img.src = option.thumbnail_url || 'https://via.placeholder.com/200?text=Gift+Image';
                   }}
                 />
                 <div style={{ marginBottom: '15px' }}>

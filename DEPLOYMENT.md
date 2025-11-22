@@ -6,8 +6,7 @@ This guide will help you deploy the Plush Gifts Telegram Mini App to production.
 
 - MongoDB Atlas account
 - Telegram Bot Token (from @BotFather)
-- Veo 3.1 API key
-- NanaBanana API key (optional)
+- Google Gemini API key (get from https://aistudio.google.com/app/apikey)
 - Vercel account
 - Render/Railway account (for bot)
 
@@ -68,8 +67,7 @@ This guide will help you deploy the Plush Gifts Telegram Mini App to production.
    MONGODB_URI=your_mongodb_connection_string
    BOT_TOKEN=your_telegram_bot_token
    WEBAPP_URL=https://your-app.vercel.app
-   VEO_API_KEY=your_veo_api_key
-   NANA_KEY=your_nanabanana_key (optional)
+   GOOGLE_API_KEY=your_google_api_key
    BLOB_WRITE_TOKEN=your_vercel_blob_write_token
    BLOB_READ_TOKEN=your_vercel_blob_read_token
    TELEGRAM_BOT_SECRET=your_telegram_bot_secret
@@ -132,7 +130,7 @@ The webhook endpoint is: `https://your-app.vercel.app/api/telegram/webhook`
 3. **Test API Routes:**
    - Check Vercel function logs
    - Verify MongoDB connections
-   - Test Veo generation
+   - Test Gemini image generation
 
 ## Troubleshooting
 
@@ -149,7 +147,7 @@ The webhook endpoint is: `https://your-app.vercel.app/api/telegram/webhook`
 - Check Vercel function logs
 - Verify MongoDB connection string
 - Check all environment variables are set
-- Verify Veo API key is valid
+- Verify GOOGLE_API_KEY is valid and has API access enabled
 
 ### Web App Not Loading
 
@@ -194,7 +192,7 @@ The webhook endpoint is: `https://your-app.vercel.app/api/telegram/webhook`
 
 4. **Storage:**
    - Monitor Vercel Blob usage
-   - Consider CDN for video delivery
+   - Consider CDN for image delivery
    - Implement cleanup for old/unused files
 
 ## Security Checklist
