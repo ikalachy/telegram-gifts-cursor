@@ -1,0 +1,32 @@
+{
+  "name": "telegram-gifts-cursor",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "setup-webhook": "curl -X POST https://your-app.vercel.app/api/telegram/setup"
+  },
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "mongoose": "^8.3.0",
+    "telegraf": "^4.16.0",
+    "axios": "^1.7.0",
+    "form-data": "^4.0.0",
+    "@vercel/blob": "^0.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.3.0",
+    "tsx": "^4.7.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.0"
+  }
+}
+
