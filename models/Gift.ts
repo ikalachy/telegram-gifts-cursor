@@ -24,5 +24,5 @@ const GiftSchema: Schema = new Schema({
   created_at: { type: Date, default: Date.now },
 });
 
-export const Gift: Model<IGift> = mongoose.models.Gift || mongoose.model<IGift>('Gift', GiftSchema);
+export const Gift: Model<IGift> = mongoose.models.Gift || mongoose.model<IGift>('Gift', GiftSchema, 'nanopets_gifts');
 

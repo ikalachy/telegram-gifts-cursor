@@ -10,6 +10,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <html lang="en">
+      <head>
+        <script src="https://telegram.org/js/telegram-web-app.js" async></script>
+      </head>
+      <body style={{ margin: 0, padding: 0, fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+        {children}
+      </body>
+    </html>
+  );
 }
 

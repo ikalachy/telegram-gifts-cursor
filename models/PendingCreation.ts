@@ -27,5 +27,5 @@ const PendingCreationSchema: Schema = new Schema({
 });
 
 export const PendingCreation: Model<IPendingCreation> = 
-  mongoose.models.PendingCreation || mongoose.model<IPendingCreation>('PendingCreation', PendingCreationSchema);
+  mongoose.models.PendingCreation || mongoose.model<IPendingCreation>('PendingCreation', PendingCreationSchema, 'nanopets_pendingcreations');
 

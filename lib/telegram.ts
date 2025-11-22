@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-interface TelegramUser {
+export interface TelegramUser {
   id: number;
   first_name: string;
   last_name?: string;
@@ -87,10 +87,63 @@ export function parseInitData(initData: string): ParsedInitData | null {
 }
 
 /**
+ * Creates a mock Telegram user for local testing
+ */
+export function createMockTelegramUser(telegramId: number, username?: string): TelegramUser {
+  return {
+    id: telegramId,
+    first_name: `Test User ${telegramId}`,
+    username: username || `testuser${telegramId}`,
+    language_code: 'en',
+  };
+}
+
+/**
  * Validates and extracts user from initData
+ * Supports mock mode for local development when MOCK_TELEGRAM_USER is enabled
  */
 export function getUserFromInitData(initData: string, botToken: string): TelegramUser | null {
+  const mockModeEnabled = process.env.MOCK_TELEGRAM_USER === 'true';
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  
+  // Support mock format: "mock:123456" where number is telegram_id
+  // This works in both mock mode and development mode
+  if (initData.startsWith('mock:')) {
+    const telegramId = parseInt(initData.split(':')[1], 10);
+    if (!isNaN(telegramId)) {
+      if (mockModeEnabled || isDevelopment) {
+        return createMockTelegramUser(telegramId);
+      }
+    }
+  }
+  
+  // Support JSON format in mock/development mode: {"id": 123456, "username": "test"}
+  if ((mockModeEnabled || isDevelopment) && initData.startsWith('{')) {
+    try {
+      const mockUser = JSON.parse(initData);
+      if (mockUser.id) {
+        return {
+          id: mockUser.id,
+          first_name: mockUser.first_name || `Test User ${mockUser.id}`,
+          last_name: mockUser.last_name,
+          username: mockUser.username || `testuser${mockUser.id}`,
+          language_code: mockUser.language_code || 'en',
+          is_premium: mockUser.is_premium,
+          photo_url: mockUser.photo_url,
+        };
+      }
+    } catch (e) {
+      // Not valid JSON, continue with normal validation
+    }
+  }
+  
+  // Normal validation
   if (!validateInitData(initData, botToken)) {
+    // In mock mode, if validation fails, return a default test user
+    if (mockModeEnabled) {
+      console.warn('[MOCK MODE] Telegram validation failed, using default test user');
+      return createMockTelegramUser(123456789, 'testuser');
+    }
     return null;
   }
 

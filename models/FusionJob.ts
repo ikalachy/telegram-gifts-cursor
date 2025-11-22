@@ -21,5 +21,5 @@ const FusionJobSchema: Schema = new Schema({
 });
 
 export const FusionJob: Model<IFusionJob> = 
-  mongoose.models.FusionJob || mongoose.model<IFusionJob>('FusionJob', FusionJobSchema);
+  mongoose.models.FusionJob || mongoose.model<IFusionJob>('FusionJob', FusionJobSchema, 'nanopets_fusionjobs');
 

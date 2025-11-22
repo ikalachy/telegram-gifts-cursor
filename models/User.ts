@@ -16,5 +16,5 @@ const UserSchema: Schema = new Schema({
   created_at: { type: Date, default: Date.now },
 });
 
-export const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
+export const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>('User', UserSchema, 'nanopets_users');
 
