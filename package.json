@@ -10,7 +10,7 @@
     "setup-webhook": "curl -X POST https://your-app.vercel.app/api/telegram/setup"
   },
   "dependencies": {
-    "next": "^14.2.0",
+    "next": "14.2.35",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "mongoose": "^8.3.0",
@@ -29,4 +29,3 @@
     "eslint-config-next": "^14.2.0"
   }
 }
-
